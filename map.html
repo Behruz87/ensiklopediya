@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CATEGORY</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/html5reset.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/responsive.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/camera.css"/>
+    <link rel="stylesheet" href="css/slider/demo.css">
+    <link rel="stylesheet" href="css/slider/style-slider.css">
+    <link rel='stylesheet' href="css/cherryframework-style.css" media="all"/>
+    <link rel='stylesheet' href="css/main-style.css" media="all"/>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="js/html5.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/slider/modernizr.custom.js"></script>
+    <!--[if gte IE 9]>
+    <script type="text/javascript" src="js/jquery.mobile.customized.min.js"></script>
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery('.sf-menu').mobileMenu({defaultText: "Navigate to..."});
+        });
+    </script>
+    <!--<![endif]-->
+    <script type="text/javascript">
+        // Init navigation menu
+        jQuery(function () {
+            // main navigation init
+            jQuery('ul.sf-menu').superfish({
+                delay: 500, // the delay in milliseconds that the mouse can remain outside a sub-menu without it closing
+                animation: {
+                    opacity: "show",
+                    height: "show"
+                }, // used to animate the sub-menu open
+                speed: "normal", // animation speed
+                autoArrows: false, // generation of arrow mark-up (for submenu)
+                disableHI: true // to disable hoverIntent detection
+            });
+
+            //Zoom fix
+            //IPad/IPhone
+            var viewportmeta = document.querySelector && document.querySelector('meta[name="viewport"]'),
+                    ua = navigator.userAgent,
+                    gestureStart = function () {
+                        viewportmeta.content = "width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0";
+                    },
+                    scaleFix = function () {
+                        if (viewportmeta && /iPhone|iPad/.test(ua) && !/Opera Mini/.test(ua)) {
+                            viewportmeta.content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0";
+                            document.addEventListener("gesturestart", gestureStart, false);
+                        }
+                    };
+            scaleFix();
+        })
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            var submitIcon = $('.searchbox-icon');
+            var inputBox = $('.searchbox-input');
+            var searchBox = $('.searchbox');
+            var isOpen = false;
+            submitIcon.click(function () {
+                if (isOpen == false) {
+                    searchBox.addClass('searchbox-open');
+                    inputBox.focus();
+                    isOpen = true;
+                } else {
+                    searchBox.removeClass('searchbox-open');
+                    inputBox.focusout();
+                    isOpen = false;
+                }
+            });
+
+            submitIcon.mouseup(function () {
+                return false
+            });
+
+            searchBox.mouseup(function () {
+                return false
+            });
+
+
+            $(document).mouseup(function () {
+                if (isOpen == true) {
+                    $('.searchbox-icon').css('display', 'block');
+                    submitIcon.click();
+                }
+            });
+        });
+
+        function buttonUp() {
+            var inputVal = $('.searchbox-input').val();
+            inputVal = $.trim(inputVal).length;
+            if (inputVal !== 0) {
+                $('.searchbox-icon').css('display', 'none');
+            } else {
+                $('.searchbox-input').val('');
+                $('.searchbox-icon').css('display', 'block');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <header class="main-header">
+        <div class="top-header">
+            <div class="logo left">
+                <a href="#link"><img src="img/logo.png" alt="[alternative text]"/></a>
+            </div>
+
+            <div class="main-nav">
+                <nav class="nav nav__primary clearfix">
+                    <ul id="topnav" class="sf-menu">
+                        <li class="home-nav menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-203 current_page_item">
+                            <a href="#link">Ana səhifə</a>
+                        </li>
+
+                        <li class="about-nav menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                            <a href="#link">Menyu</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                    <a href="#link">Flora</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                    <a href="#link">Fauna</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                    <a href="#link">Coooğrafi və Fiziki Obyektlər</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="port-nav menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                            <a href="#link">Qalereya</a>
+                        </li>
+                        <li class="cont-nav menu-item menu-item-type-post_type menu-item    -object-page">
+                            <a href="#link">Əlaqə</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="wrap-searchbox">
+                <form class="searchbox">
+                    <input type="search" placeholder="Genişlənmiş axtarış......" name="search" class="searchbox-input"
+                           onkeyup="buttonUp();" required>
+                    <input type="submit" class="searchbox-submit" value="">
+                    <span class="searchbox-icon"><i class="fa fa-search"></i></span>
+                </form>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </div>
+
+        <nav class="select-menu-2">
+            <button id="mob-menu" type="button"><i class="fa fa-bars"></i></button>
+            <ul>
+
+                <li><a href="#link">Ana səhifə</a></li>
+                <li><a href="#link">Menyu</a>
+                    <ul class="select-menu-sub-menu">
+                        <li><a href="#link">Flora</a></li>
+                        <li><a href="#link">Fauna</a></li>
+                        <li><a href="#link">Coooğrafi və Fiziki Obyektlər</a></li>
+                    </ul>
+                </li>
+                <li><a href="#link">Qalereya</a></li>
+                <li><a href="#link">Əlaqə</a></li>
+            </ul>
+        </nav>
+
+        <div class="alphabet">
+            <ul>
+                <li><a href="#link">A</a></li>
+                <li><a href="#link">B</a></li>
+                <li><a href="#link">C</a></li>
+                <li><a href="#link">Ç</a></li>
+                <li><a href="#link">D</a></li>
+                <li><a href="#link">E</a></li>
+                <li><a href="#link">Ə</a></li>
+                <li><a href="#link">F</a></li>
+                <li><a href="#link">G</a></li>
+                <li><a href="#link">H</a></li>
+                <li><a href="#link">X</a></li>
+                <li><a href="#link">İ</a></li>
+                <li><a href="#link">J</a></li>
+                <li><a href="#link">K</a></li>
+                <li><a href="#link">Q</a></li>
+                <li><a href="#link">L</a></li>
+                <li><a href="#link">M</a></li>
+                <li><a href="#link">N</a></li>
+                <li><a href="#link">O</a></li>
+                <li><a href="#link">Ö</a></li>
+                <li><a href="#link">P</a></li>
+                <li><a href="#link">R</a></li>
+                <li><a href="#link">S</a></li>
+                <li><a href="#link">Ş</a></li>
+                <li><a href="#link">T</a></li>
+                <li><a href="#link">U</a></li>
+                <li><a href="#link">Ü</a></li>
+                <li><a href="#link">V</a></li>
+                <li><a href="#link">Y</a></li>
+                <li><a href="#link">Z</a></li>
+            </ul>
+        </div>
+
+    </header>
+    <div class="content">
+
+        <div class="block-location red">
+            <div class="layout">
+                <h3>Tarixi və Coğrafi Obyektlər</h3>
+                <hr/>
+                <ul>
+                    <li><a href="#link">Ana Səhifə</a></li>
+                    <li><a href="#link">Menyu</a></li>
+                    <li><a class="active-link" href="#link">Tarixi və Coğrafi Obyektlər</a></li>
+                </ul>
+                <div class="clr"></div>
+                <hr/>
+            </div>
+        </div>
+
+        <div class="wrap-content">
+            <section class="wrap-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48450.457139652804!2d48.64197398060804!3d40.62649508868297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sru!4v1423693287159" width="1170" height="400" frameborder="0" style="border:0"></iframe>
+            </section>
+        </div>
+    </div>
+</div>
+<footer>
+    <p class="copyright"><span>Şamaxı Ensiklopediyası</span> © 2015 AVCİYA | Bütün hüquqlar qorunur.</p>
+
+    <p class="soc-block">
+        <a href=""><i class="fa fa-facebook"></i></a>
+        <a href=""><i class="fa fa-youtube-play"></i></a>
+        <a href=""><i class="fa fa-twitter"></i></a>
+    </p>
+
+    <div class="clr"></div>
+</footer>
+<script type='text/javascript' src="js/superfish.js"></script>
+<script type='text/javascript' src="js/jquery.mobilemenu.js"></script>
+</body>
+</html>
